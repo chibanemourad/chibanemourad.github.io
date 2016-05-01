@@ -1,0 +1,16 @@
+# main links links
+main:
+  - title: "About"
+    url: # https://mmistakes.github.io/minimal-mistakes/
+
+  - title: "Cyberfolio"
+    url: # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+
+  - title: "CV"
+    url: # https://mmistakes.github.io/minimal-mistakes/year-archive/
+
+  # - title: "Sample Pages"
+    url: # https://mmistakes.github.io/minimal-mistakes/page-archive/
+
+  # - title: "Sample Collections"
+    url: # https://mmistakes.github.io/minimal-mistakes/collection-archive/
