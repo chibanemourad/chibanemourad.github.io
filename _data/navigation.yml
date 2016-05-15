@@ -6,7 +6,7 @@ main:
   - title: "Cyberfolio"
     url: # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
 
-  - title: "CV"
+  # - title: "CV"
     url: # https://mmistakes.github.io/minimal-mistakes/year-archive/
 
   # - title: "Sample Pages"
