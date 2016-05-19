@@ -10,7 +10,7 @@ locale                   : "fr-FR"
 title                    : "Chibane Mourad"
 title_separator          : "-"
 name                     : "Chibane Mourad"
-description              : "Site d'un ingénieur informaticien parmi d'autres..."
+description              : "Software engineer"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 gh_repo                  :
@@ -62,8 +62,8 @@ google_ad_slot           :
 # Site Author
 author:
   name             : "Chibane Mourad"
-  avatar           : "Chimou2.jpg"
-  bio              : "Site d'un ingénieur informaticien parmi tant d'autres ٩(̾●̮̮̃̾•̃̾)۶"
+  avatar           : "chimou.JPG"
+  bio              : "Software engineer"
   location         : "Paris, France"
   email            :
   uri              :
