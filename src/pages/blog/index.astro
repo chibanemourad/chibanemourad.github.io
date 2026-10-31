@@ -1,0 +1,22 @@
+---
+import Base from "../../layouts/Base.astro";
+import { articles } from "../../lib/content";
+const entries = await articles();
+---
+
+<Base title="Writing">
+  <p class="eyebrow">Notes & ideas</p>
+  <h1>Writing.</h1>
+  {entries.length ? (
+    entries.map((p) => (
+      <article class="card">
+        <h2>
+          <a href={"/blog/" + p.id + "/"}>{p.data.title}</a>
+        </h2>
+        <p>{p.data.description}</p>
+      </article>
+    ))
+  ) : (
+    <p> Articles are being prepared. Check back soon.</p>
+  )}
+</Base>

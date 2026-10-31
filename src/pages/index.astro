@@ -1,0 +1,68 @@
+---
+import Base from "../layouts/Base.astro";
+import { articles, projects } from "../lib/content";
+const posts = await articles();
+const work = await projects();
+---
+
+<Base title="Software engineer">
+  <section class="hero">
+    <p class="eyebrow">Paris, France · Portfolio & notes</p>
+    <h1>
+      Thoughtful software.
+      <br />
+      <em>Built with care.</em>
+    </h1>
+    <div class="intro">
+      <p>
+        I’m Mourad Chibane, a software engineer based in Paris. This is my space
+        for selected work and notes on software engineering.
+      </p>
+      <a class="button" href="/about/">
+        A little about me <span>↗</span>
+      </a>
+    </div>
+  </section>
+  <section class="section">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <a href="/projects/">All projects ↗</a>
+    </div>
+    {work.length ? (
+      work.slice(0, 3).map((p) => (
+        <article class="card">
+          <h3>
+            <a href={"/projects/" + p.id + "/"}>{p.data.title}</a>
+          </h3>
+          <p>{p.data.description}</p>
+        </article>
+      ))
+    ) : (
+      <p class="muted">
+        Project case studies are being prepared. In the meantime, explore my{" "}
+        <a href="https://github.com/chibanemourad">work on GitHub ↗</a>.
+      </p>
+    )}
+  </section>
+  <section class="section">
+    <div class="section-head">
+      <h2>From the notebook</h2>
+      <a href="/blog/">All writing ↗</a>
+    </div>
+    {posts.length ? (
+      posts.slice(0, 3).map((p) => (
+        <article class="card">
+          <h3>
+            <a href={"/blog/" + p.id + "/"}>{p.data.title}</a>
+          </h3>
+          <p>{p.data.description}</p>
+        </article>
+      ))
+    ) : (
+      <p class="muted">
+        A place for future articles on software engineering. New notes will
+        appear here.
+      </p>
+    )}
+  </section>
+</Base>

@@ -1,0 +1,68 @@
+---
+import "../styles/global.css";
+interface Props {
+  title: string;
+  description?: string;
+}
+const {
+  title,
+  description = "Mourad Chibane — software engineer based in Paris, France.",
+} = Astro.props;
+const links = [
+  ["About", "/about/"],
+  ["Projects", "/projects/"],
+  ["Writing", "/blog/"],
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title} · Mourad Chibane</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+    <meta name="twitter:card" content="summary" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Writing"
+      href="/feed.xml"
+    />
+  </head>
+  <body>
+    <a class="skip" href="#main">
+      Skip to content
+    </a>
+    <header>
+      <a class="brand" href="/">
+        MC<span> / Software engineer</span>
+      </a>
+      <nav aria-label="Main">
+        {links.map(([label, url]) => (
+          <a
+            href={url}
+            aria-current={
+              Astro.url.pathname.startsWith(url) ? "page" : undefined
+            }
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer>
+      <span>© {new Date().getFullYear()} Mourad Chibane · Paris, France</span>
+      <a href="https://github.com/chibanemourad">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/mouradchibane/">LinkedIn ↗</a>
+    </footer>
+  </body>
+</html>
