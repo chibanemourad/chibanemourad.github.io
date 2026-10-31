@@ -1,0 +1,16 @@
+---
+import type { Experience } from "../data/profile";
+interface Props {
+  experience: Experience;
+}
+const { experience } = Astro.props;
+---
+
+<article class="card">
+  <p class="eyebrow">{experience.period}</p>
+  <h3>{experience.role}</h3>
+  <p>
+    <strong>{experience.employer}</strong>
+  </p>
+  {experience.summary && <p>{experience.summary}</p>}
+</article>

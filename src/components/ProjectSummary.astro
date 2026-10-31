@@ -1,0 +1,15 @@
+---
+import type { CollectionEntry } from "astro:content";
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+const { project } = Astro.props;
+---
+
+<article class="card">
+  <p class="eyebrow">{project.data.employer}</p>
+  <h3>
+    <a href={"/projects/" + project.id + "/"}>{project.data.title}</a>
+  </h3>
+  <p>{project.data.description}</p>
+</article>

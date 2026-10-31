@@ -31,3 +31,7 @@ If a run named **pages build and deployment** logs Jekyll, the repository is sti
 Generated artifacts are ignored. To roll back, revert the migration or a faulty commit and redeploy using the matching workflow. Git history retains the legacy Jekyll source.
 
 Before release, manually verify mobile/desktop layouts, keyboard focus, navigation, RSS, sitemap, and the deployed 404 page. Playwright checks accessibility, responsive overflow, and discovery endpoints. Run `npx playwright install chromium` then `npm run test:e2e` after building. Performance budgets still require Lighthouse verification.
+
+## Profile and portfolio content
+
+Edit `src/data/profile.ts` for shared identity and career details. Project frontmatter requires employer, role, technologies, and a nonnegative integer order; featured controls homepage selection. Projects sort by order then slug. Keep current-role responsibilities separate from historical assignments. Editorial source notes and unpublished article outlines live in `docs/content-sources.md`, outside published assets.

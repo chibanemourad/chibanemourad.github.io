@@ -13,6 +13,14 @@ export const collections = {
   }),
   projects: defineCollection({
     loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
-    schema: z.object({ ...common, url: z.url().optional() }),
+    schema: z.object({
+      ...common,
+      url: z.url().optional(),
+      employer: z.string().min(1),
+      role: z.string().min(1),
+      technologies: z.array(z.string().min(1)).min(1),
+      featured: z.boolean().default(false),
+      order: z.number().int().nonnegative(),
+    }),
   }),
 };

@@ -1,26 +1,68 @@
 ---
 import Base from "../layouts/Base.astro";
+import ProjectSummary from "../components/ProjectSummary.astro";
+import { profile } from "../data/profile";
 import { articles, projects } from "../lib/content";
+const currentRole = profile.experience[0];
 const posts = await articles();
-const work = await projects();
+const work = (await projects()).filter((p) => p.data.featured).slice(0, 3);
 ---
 
-<Base title="Software engineer">
+<Base
+  title="Software architecture & engineering excellence"
+  description={profile.description}
+>
   <section class="hero">
-    <p class="eyebrow">Paris, France · Portfolio & notes</p>
+    <p class="eyebrow">
+      {profile.location} · {currentRole.role}
+    </p>
     <h1>
-      Thoughtful software.
+      Strong foundations.
       <br />
-      <em>Built with care.</em>
+      <em>Better engineering.</em>
     </h1>
     <div class="intro">
       <p>
-        I’m Mourad Chibane, a software engineer based in Paris. This is my space
-        for selected work and notes on software engineering.
+        I’m {profile.name}, {currentRole.role} at {currentRole.employer}. I
+        design modular .NET applications, build reusable technical foundations,
+        and help teams improve software quality across complex codebases.
       </p>
-      <a class="button" href="/about/">
-        A little about me <span>↗</span>
+      <a class="button" href="/projects/">
+        Explore my work ↗
       </a>
+    </div>
+    <p>
+      <a href={profile.resume}>View résumé ↗</a> ·{" "}
+      <a href="/about/">About my experience</a>
+    </p>
+  </section>
+  <section class="section">
+    <h2>Architecture that supports teams and products</h2>
+    <div class="strengths">
+      <article>
+        <h3>Software architecture</h3>
+        <p>
+          Modular .NET applications, reusable frameworks, and documented
+          architectural decisions. Hands-on experience spans medical-device
+          software and React/Python products in climate technology.
+        </p>
+      </article>
+      <article>
+        <h3>Engineering quality at scale</h3>
+        <p>
+          Shared SDK-style build tooling and automated quality checks across 50+
+          Git repositories and approximately 500 C# projects. Consistent
+          foundations for multi-repository development.
+        </p>
+      </article>
+      <article>
+        <h3>Cross-team technical leadership</h3>
+        <p>
+          Engineering standards, thoughtful code review, and mentoring grounded
+          in hands-on delivery. Connecting architectural decisions with shared
+          practices and developer productivity.
+        </p>
+      </article>
     </div>
   </section>
   <section class="section">
@@ -28,41 +70,21 @@ const work = await projects();
       <h2>Selected work</h2>
       <a href="/projects/">All projects ↗</a>
     </div>
-    {work.length ? (
-      work.slice(0, 3).map((p) => (
-        <article class="card">
-          <h3>
-            <a href={"/projects/" + p.id + "/"}>{p.data.title}</a>
-          </h3>
-          <p>{p.data.description}</p>
-        </article>
-      ))
-    ) : (
-      <p class="muted">
-        Project case studies are being prepared. In the meantime, explore my{" "}
-        <a href="https://github.com/chibanemourad">work on GitHub ↗</a>.
-      </p>
-    )}
+    {work.map((project) => (
+      <ProjectSummary project={project} />
+    ))}
   </section>
-  <section class="section">
-    <div class="section-head">
+  {posts.length > 0 && (
+    <section class="section">
       <h2>From the notebook</h2>
-      <a href="/blog/">All writing ↗</a>
-    </div>
-    {posts.length ? (
-      posts.slice(0, 3).map((p) => (
+      {posts.slice(0, 3).map((p) => (
         <article class="card">
           <h3>
             <a href={"/blog/" + p.id + "/"}>{p.data.title}</a>
           </h3>
           <p>{p.data.description}</p>
         </article>
-      ))
-    ) : (
-      <p class="muted">
-        A place for future articles on software engineering. New notes will
-        appear here.
-      </p>
-    )}
-  </section>
+      ))}
+    </section>
+  )}
 </Base>
