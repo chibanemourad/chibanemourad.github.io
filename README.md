@@ -35,3 +35,11 @@ Before release, manually verify mobile/desktop layouts, keyboard focus, navigati
 ## Profile and portfolio content
 
 Edit `src/data/profile.ts` for shared identity and career details. Project frontmatter requires employer, role, technologies, and a nonnegative integer order; featured controls homepage selection. Projects sort by order then slug. Keep current-role responsibilities separate from historical assignments. Editorial source notes and unpublished article outlines live in `docs/content-sources.md`, outside published assets.
+
+### Appearance
+
+The appearance button beside navigation toggles light and dark themes. Initially,
+the site follows device changes automatically. Clicking saves an explicit choice
+locally and synchronizes it between tabs until browser storage is cleared.
+Without JavaScript, the site follows the device preference. Printed pages use the
+light palette. Theme colors are semantic variables in `src/styles/global.css`.
