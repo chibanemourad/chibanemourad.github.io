@@ -15,6 +15,14 @@ const { Content } = await render(entry);
 <Base title={entry.data.title} description={entry.data.description}>
   <p class="eyebrow">Projects</p>
   <h1>{entry.data.title}</h1>
+  <p>
+    {entry.data.employer} · {entry.data.role}
+  </p>
+  <ul class="technologies">
+    {entry.data.technologies.map((technology) => (
+      <li>{technology}</li>
+    ))}
+  </ul>
   <article class="prose">
     <Content />
   </article>

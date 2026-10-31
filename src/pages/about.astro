@@ -1,17 +1,143 @@
 ---
 import Base from "../layouts/Base.astro";
+import ExperienceItem from "../components/ExperienceItem.astro";
+import { profile } from "../data/profile";
 ---
 
-<Base title="About">
-  <p class="eyebrow">The person behind the code</p>
-  <h1>Hi, I’m Mourad.</h1>
+<Base title="About" description={profile.description}>
+  <p class="eyebrow">
+    Software Architecture · Technical Leadership · {profile.location}
+  </p>
+
+  <h1>Hi, I'm Mourad.</h1>
+
   <div class="prose">
-    <p>I’m a software engineer based in Paris, France.</p>
     <p>
-      This site brings together my selected projects and technical writing. You
-      can find my public work on{" "}
-      <a href="https://github.com/chibanemourad">GitHub</a> or connect with me
-      on <a href="https://www.linkedin.com/in/mouradchibane/">LinkedIn</a>.
+      I'm a software engineer and technical lead based in Paris, with over a
+      decade of experience building software, designing architectures, and
+      helping engineering teams work more effectively.
     </p>
+
+    <p>
+      I've spent much of my career working on software for medical devices,
+      where reliability, maintainability, and thoughtful engineering decisions
+      really matter. I've also worked in climate technology, building product
+      features that help companies better understand and manage their carbon
+      emissions.
+    </p>
+
+    <p>
+      Over the years, my focus has naturally evolved from writing application
+      code to thinking about the bigger picture: how systems fit together, how
+      teams collaborate, and how good engineering practices can make everyone's
+      work easier.
+    </p>
+
+    <p>
+      Today, I'm a Cross-Functional Technical Lead at Diagnostica Stago, where I
+      returned in March 2025. I enjoy working at the intersection of
+      architecture, hands-on engineering, and developer experience.
+    </p>
+
+    <h2>How I approach engineering</h2>
+
+    <p>
+      I believe good software architecture isn't about making things
+      complicated. It's about making complexity manageable.
+    </p>
+
+    <p>
+      I care about clear responsibilities, sensible abstractions, automated
+      quality checks, and documenting the decisions that shape a system. Not
+      because I enjoy adding rules, but because I've seen how much easier
+      development becomes when teams have solid foundations to build on.
+    </p>
+
+    <p>
+      I also believe technical leadership is about more than making
+      architectural decisions. It's about listening, sharing knowledge,
+      challenging ideas constructively, and helping other engineers grow.
+    </p>
+
+    <p>
+      I still enjoy getting my hands into the code, understanding difficult
+      problems, and finding practical solutions. For me, staying close to
+      implementation is an important part of being an effective technical
+      leader.
+    </p>
+
+    <p>
+      Above all, I try to build software that's easier to understand, easier to
+      change, and easier for the next developer to work with.
+    </p>
+
+    <a
+      class="button"
+      href={profile.resume}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      View résumé ↗
+    </a>
   </div>
+
+  <section class="section">
+    <h2>Experience</h2>
+    <p class="section-intro">
+      From hands-on software development to architecture and cross-team
+      technical leadership.
+    </p>
+
+    {profile.experience.map((experience) => (
+      <ExperienceItem experience={experience} />
+    ))}
+  </section>
+
+  <section class="section">
+    <h2>What I work with</h2>
+    <p class="section-intro">
+      The technologies, practices, and engineering disciplines I've worked with
+      throughout my career.
+    </p>
+
+    {profile.expertise.map((item) => (
+      <article class="card">
+        <h3>{item.title}</h3>
+        <p>{item.text}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="section">
+    <h2>Education</h2>
+    {profile.education.map((item) => (
+      <p>{item}</p>
+    ))}
+  </section>
+
+  <section class="section">
+    <h2>Languages</h2>
+    <ul>
+      {profile.languages.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Let's connect</h2>
+    <p>
+      Interested in discussing software architecture, engineering practices, or
+      sharing ideas? Feel free to reach out.
+    </p>
+    <p>
+      <a href={profile.github} target="_blank" rel="noopener noreferrer">
+        GitHub ↗
+      </a>
+      {" · "}
+      <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+        LinkedIn ↗
+      </a>
+    </p>
+  </section>
 </Base>

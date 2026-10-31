@@ -190,3 +190,22 @@ footer span {
     width: 100%;
   }
 }
+
+.strengths {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 24px;
+}
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+}
+.technologies li {
+  padding: 6px 12px;
+  border: 1px solid #dce0d5;
+  border-radius: 4px;
+  font-size: 14px;
+}
