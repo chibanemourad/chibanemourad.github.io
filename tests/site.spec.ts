@@ -66,3 +66,48 @@ test("profile and featured work reflect verified career details", async ({
   await expect(current).toContainText("Cross-Functional Technical Lead");
   await expect(current).not.toContainText("MSBuild");
 });
+
+test("theme follows system until toggled and persists overrides", async ({
+  page,
+}) => {
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/");
+  await expect(
+    page.getByRole("button", { name: "Switch to light theme" }),
+  ).toBeVisible();
+  await page.emulateMedia({ colorScheme: "light" });
+  await expect(
+    page.getByRole("button", { name: "Switch to dark theme" }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Switch to dark theme" }).click();
+  await expect(page.locator("html")).toHaveCSS("color-scheme", "dark");
+  await page.reload();
+  await expect(page.locator("html")).toHaveCSS("color-scheme", "dark");
+  await page.getByRole("button", { name: "Switch to light theme" }).click();
+  await page.emulateMedia({ colorScheme: "dark" });
+  await expect(page.locator("html")).toHaveCSS("color-scheme", "light");
+  await page.goto("/about/");
+  await expect(page.locator("html")).toHaveCSS("color-scheme", "light");
+});
+
+for (const preference of ["system", "dark"]) {
+  test(`printing uses light colors with ${preference} dark appearance`, async ({
+    page,
+  }) => {
+    await page.emulateMedia({ colorScheme: "dark" });
+    await page.goto("/");
+    if (preference === "dark") {
+      await page.getByRole("button", { name: "Switch to light theme" }).click();
+      await page.getByRole("button", { name: "Switch to dark theme" }).click();
+    }
+    await expect(page.locator("html")).toHaveCSS("color-scheme", "dark");
+    await page.emulateMedia({ media: "print" });
+    await expect(page.locator("html")).toHaveCSS("color-scheme", "light");
+    await expect(page.locator("html")).toHaveCSS("color", "rgb(30, 41, 39)");
+    await expect(page.locator("html")).toHaveCSS(
+      "background-color",
+      "rgb(247, 248, 242)",
+    );
+    await expect(page.locator(".theme-control")).toBeHidden();
+  });
+}

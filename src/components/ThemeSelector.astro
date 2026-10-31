@@ -1,0 +1,76 @@
+<div class="theme-control" hidden>
+  <button class="theme-trigger" type="button" aria-label="Switch to dark theme">
+    <svg
+      class="theme-moon"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      aria-hidden="true"
+    >
+      <path d="M20.5 14A9 9 0 0 1 10 3.5 9 9 0 1 0 20.5 14Z" />
+    </svg>
+    <svg
+      class="theme-sun"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      aria-hidden="true"
+      style="display: none"
+    >
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" />
+    </svg>
+  </button>
+</div>
+<script>
+  type Preference = "system" | "light" | "dark";
+  const control = document.querySelector<HTMLElement>(".theme-control");
+  const trigger = control?.querySelector("button");
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+  const normalize = (value: string | null): Preference =>
+    value === "light" || value === "dark" ? value : "system";
+  let preference = normalize(document.documentElement.dataset.theme ?? null);
+  const isDark = () =>
+    preference === "dark" || (preference === "system" && media.matches);
+  function update() {
+    if (preference === "system") delete document.documentElement.dataset.theme;
+    else document.documentElement.dataset.theme = preference;
+    const dark = isDark();
+    trigger?.setAttribute(
+      "aria-label",
+      `Switch to ${dark ? "light" : "dark"} theme`,
+    );
+    control
+      ?.querySelector<SVGElement>(".theme-moon")
+      ?.style.setProperty("display", dark ? "none" : "block");
+    control
+      ?.querySelector<SVGElement>(".theme-sun")
+      ?.style.setProperty("display", dark ? "block" : "none");
+  }
+  if (control && trigger) {
+    update();
+    control.hidden = false;
+    trigger.addEventListener("click", () => {
+      preference = isDark() ? "light" : "dark";
+      update();
+      try {
+        localStorage.setItem("portfolio-theme", preference);
+      } catch {
+        /* Keep the choice for this page when storage is unavailable. */
+      }
+    });
+    media.addEventListener("change", update);
+    window.addEventListener("storage", (event) => {
+      if (event.key === "portfolio-theme" || event.key === null) {
+        preference = normalize(event.newValue);
+        update();
+      }
+    });
+  }
+</script>

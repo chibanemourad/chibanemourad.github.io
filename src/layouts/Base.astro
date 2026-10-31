@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import ThemeSelector from "../components/ThemeSelector.astro";
 import { profile } from "../data/profile";
 interface Props {
   title: string;
@@ -17,6 +18,15 @@ const links = [
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <script is:inline>
+      try {
+        const theme = localStorage.getItem("portfolio-theme");
+        if (theme === "light" || theme === "dark")
+          document.documentElement.dataset.theme = theme;
+      } catch {
+        /* CSS follows the system when storage is unavailable. */
+      }
+    </script>
     <meta name="viewport" content="width=device-width" />
     <title>{title} · Mourad Chibane</title>
     <meta name="description" content={description} />
@@ -53,18 +63,21 @@ const links = [
       <a class="brand" href="/">
         MC<span> / Technical lead</span>
       </a>
-      <nav aria-label="Main">
-        {links.map(([label, url]) => (
-          <a
-            href={url}
-            aria-current={
-              Astro.url.pathname.startsWith(url) ? "page" : undefined
-            }
-          >
-            {label}
-          </a>
-        ))}
-      </nav>
+      <div class="header-actions">
+        <nav aria-label="Main">
+          {links.map(([label, url]) => (
+            <a
+              href={url}
+              aria-current={
+                Astro.url.pathname.startsWith(url) ? "page" : undefined
+              }
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+        <ThemeSelector />
+      </div>
     </header>
     <main id="main">
       <slot />
