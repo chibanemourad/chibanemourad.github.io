@@ -43,3 +43,10 @@ the site follows device changes automatically. Clicking saves an explicit choice
 locally and synchronizes it between tabs until browser storage is cleared.
 Without JavaScript, the site follows the device preference. Printed pages use the
 light palette. Theme colors are semantic variables in `src/styles/global.css`.
+
+## Design system
+
+Visit `/design-system/` for live components and foundations. Edit canonical DTCG
+tokens in `design-system/tokens/`, then run `npm run tokens:build`.
+`npm run tokens:check` rejects stale generated CSS. See
+[design-system/README.md](design-system/README.md) for Figma handoff and contribution rules.

@@ -1,4 +1,6 @@
 ---
+import ActionLink from "../components/ui/ActionLink.astro";
+import Section from "../components/ui/Section.astro";
 import Base from "../layouts/Base.astro";
 import ProjectSummary from "../components/ProjectSummary.astro";
 import { profile } from "../data/profile";
@@ -27,16 +29,14 @@ const work = (await projects()).filter((p) => p.data.featured).slice(0, 3);
         design modular .NET applications, build reusable technical foundations,
         and help teams improve software quality across complex codebases.
       </p>
-      <a class="button" href="/projects/">
-        Explore my work ↗
-      </a>
+      <ActionLink href="/projects/">Explore my work ↗</ActionLink>
     </div>
     <p>
       <a href={profile.resume}>View résumé ↗</a> ·{" "}
       <a href="/about/">About my experience</a>
     </p>
   </section>
-  <section class="section">
+  <Section>
     <h2>Architecture that supports teams and products</h2>
     <div class="strengths">
       <article>
@@ -64,8 +64,8 @@ const work = (await projects()).filter((p) => p.data.featured).slice(0, 3);
         </p>
       </article>
     </div>
-  </section>
-  <section class="section">
+  </Section>
+  <Section>
     <div class="section-head">
       <h2>Selected work</h2>
       <a href="/projects/">All projects ↗</a>
@@ -73,9 +73,9 @@ const work = (await projects()).filter((p) => p.data.featured).slice(0, 3);
     {work.map((project) => (
       <ProjectSummary project={project} />
     ))}
-  </section>
+  </Section>
   {posts.length > 0 && (
-    <section class="section">
+    <Section>
       <h2>From the notebook</h2>
       {posts.slice(0, 3).map((p) => (
         <article class="card">
@@ -85,6 +85,6 @@ const work = (await projects()).filter((p) => p.data.featured).slice(0, 3);
           <p>{p.data.description}</p>
         </article>
       ))}
-    </section>
+    </Section>
   )}
 </Base>

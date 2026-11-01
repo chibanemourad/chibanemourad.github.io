@@ -1,0 +1,413 @@
+{
+  "light": {
+    "text": {
+      "$type": "color",
+      "$value": "{primitive.light-text}",
+      "$description": "text in light appearance"
+    },
+    "background": {
+      "$type": "color",
+      "$value": "{primitive.light-background}",
+      "$description": "background in light appearance"
+    },
+    "accent": {
+      "$type": "color",
+      "$value": "{primitive.light-accent}",
+      "$description": "accent in light appearance"
+    },
+    "focus": {
+      "$type": "color",
+      "$value": "{primitive.light-focus}",
+      "$description": "focus in light appearance"
+    },
+    "border": {
+      "$type": "color",
+      "$value": "{primitive.light-border}",
+      "$description": "border in light appearance"
+    },
+    "muted": {
+      "$type": "color",
+      "$value": "{primitive.light-muted}",
+      "$description": "muted in light appearance"
+    },
+    "button": {
+      "$type": "color",
+      "$value": "{primitive.light-button}",
+      "$description": "button in light appearance"
+    },
+    "button-hover": {
+      "$type": "color",
+      "$value": "{primitive.light-button-hover}",
+      "$description": "button-hover in light appearance"
+    },
+    "button-text": {
+      "$type": "color",
+      "$value": "{primitive.light-background}",
+      "$description": "background in light appearance"
+    }
+  },
+  "dark": {
+    "text": {
+      "$type": "color",
+      "$value": "{primitive.dark-text}",
+      "$description": "text in dark appearance"
+    },
+    "background": {
+      "$type": "color",
+      "$value": "{primitive.dark-background}",
+      "$description": "background in dark appearance"
+    },
+    "accent": {
+      "$type": "color",
+      "$value": "{primitive.dark-accent}",
+      "$description": "accent in dark appearance"
+    },
+    "focus": {
+      "$type": "color",
+      "$value": "{primitive.dark-focus}",
+      "$description": "focus in dark appearance"
+    },
+    "border": {
+      "$type": "color",
+      "$value": "{primitive.dark-border}",
+      "$description": "border in dark appearance"
+    },
+    "muted": {
+      "$type": "color",
+      "$value": "{primitive.dark-muted}",
+      "$description": "muted in dark appearance"
+    },
+    "button": {
+      "$type": "color",
+      "$value": "{primitive.dark-accent}",
+      "$description": "button in dark appearance"
+    },
+    "button-hover": {
+      "$type": "color",
+      "$value": "{primitive.dark-button-hover}",
+      "$description": "button-hover in dark appearance"
+    },
+    "button-text": {
+      "$type": "color",
+      "$value": "{primitive.dark-background}",
+      "$description": "background in dark appearance"
+    }
+  },
+  "space": {
+    "4": {
+      "$type": "dimension",
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    },
+    "6": {
+      "$type": "dimension",
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      }
+    },
+    "8": {
+      "$type": "dimension",
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      }
+    },
+    "12": {
+      "$type": "dimension",
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      }
+    },
+    "16": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    },
+    "20": {
+      "$type": "dimension",
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      }
+    },
+    "24": {
+      "$type": "dimension",
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      }
+    },
+    "28": {
+      "$type": "dimension",
+      "$value": {
+        "value": 28,
+        "unit": "px"
+      }
+    },
+    "32": {
+      "$type": "dimension",
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      }
+    },
+    "40": {
+      "$type": "dimension",
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      }
+    },
+    "44": {
+      "$type": "dimension",
+      "$value": {
+        "value": 44,
+        "unit": "px"
+      }
+    },
+    "48": {
+      "$type": "dimension",
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      }
+    },
+    "64": {
+      "$type": "dimension",
+      "$value": {
+        "value": 64,
+        "unit": "px"
+      }
+    },
+    "72": {
+      "$type": "dimension",
+      "$value": {
+        "value": 72,
+        "unit": "px"
+      }
+    },
+    "80": {
+      "$type": "dimension",
+      "$value": {
+        "value": 80,
+        "unit": "px"
+      }
+    }
+  },
+  "layout": {
+    "container": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1152,
+        "unit": "px"
+      }
+    },
+    "prose": {
+      "$type": "dimension",
+      "$value": {
+        "value": 700,
+        "unit": "px"
+      }
+    },
+    "breakpoint": {
+      "$type": "dimension",
+      "$value": {
+        "value": 600,
+        "unit": "px"
+      }
+    }
+  },
+  "type": {
+    "family": {
+      "$type": "fontFamily",
+      "$value": ["system-ui", "sans-serif"]
+    },
+    "body": {
+      "$type": "dimension",
+      "$value": {
+        "value": 18,
+        "unit": "px"
+      }
+    },
+    "small": {
+      "$type": "dimension",
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      }
+    }
+  },
+  "primitive": {
+    "light-text": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.11764705882352941, 0.1607843137254902, 0.15294117647058825
+        ],
+        "alpha": 1
+      },
+      "$description": "text in light appearance"
+    },
+    "light-background": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9686274509803922, 0.9725490196078431, 0.9490196078431372
+        ],
+        "alpha": 1
+      },
+      "$description": "background in light appearance"
+    },
+    "light-accent": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.21176470588235294, 0.3568627450980392, 0.2549019607843137
+        ],
+        "alpha": 1
+      },
+      "$description": "accent in light appearance"
+    },
+    "light-focus": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.27450980392156865, 0.43137254901960786, 0.27450980392156865
+        ],
+        "alpha": 1
+      },
+      "$description": "focus in light appearance"
+    },
+    "light-border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8627450980392157, 0.8784313725490196, 0.8352941176470589
+        ],
+        "alpha": 1
+      },
+      "$description": "border in light appearance"
+    },
+    "light-muted": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3254901960784314, 0.3764705882352941, 0.3411764705882353
+        ],
+        "alpha": 1
+      },
+      "$description": "muted in light appearance"
+    },
+    "light-button": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1411764705882353, 0.23921568627450981, 0.17254901960784313
+        ],
+        "alpha": 1
+      },
+      "$description": "button in light appearance"
+    },
+    "light-button-hover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.24313725490196078, 0.34509803921568627, 0.2627450980392157
+        ],
+        "alpha": 1
+      },
+      "$description": "button-hover in light appearance"
+    },
+    "dark-text": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.8980392156862745, 0.9254901960784314, 0.8980392156862745
+        ],
+        "alpha": 1
+      },
+      "$description": "text in dark appearance"
+    },
+    "dark-background": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.08235294117647059, 0.11764705882352941, 0.09803921568627451
+        ],
+        "alpha": 1
+      },
+      "$description": "background in dark appearance"
+    },
+    "dark-accent": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6549019607843137, 0.8352941176470589, 0.6862745098039216
+        ],
+        "alpha": 1
+      },
+      "$description": "accent in dark appearance"
+    },
+    "dark-focus": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7137254901960784, 0.8941176470588236, 0.7372549019607844
+        ],
+        "alpha": 1
+      },
+      "$description": "focus in dark appearance"
+    },
+    "dark-border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2784313725490196, 0.3411764705882353, 0.29411764705882354
+        ],
+        "alpha": 1
+      },
+      "$description": "border in dark appearance"
+    },
+    "dark-muted": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7137254901960784, 0.7686274509803922, 0.7215686274509804
+        ],
+        "alpha": 1
+      },
+      "$description": "muted in dark appearance"
+    },
+    "dark-button-hover": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529411764705882, 0.9058823529411765, 0.7725490196078432
+        ],
+        "alpha": 1
+      },
+      "$description": "button-hover in dark appearance"
+    }
+  }
+}

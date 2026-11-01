@@ -9,9 +9,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check && eslint . && prettier --check .",
+    "check": "npm run tokens:check && astro check && eslint . && prettier --check .",
     "format": "prettier --write .",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "tokens:build": "node scripts/tokens.mjs",
+    "tokens:check": "node scripts/tokens.mjs --check",
+    "predev": "npm run tokens:build",
+    "prebuild": "npm run tokens:build"
   },
   "dependencies": {
     "@astrojs/rss": "4.0.19",
@@ -25,6 +29,7 @@
     "eslint": "10.14.0",
     "prettier": "3.9.10",
     "prettier-plugin-astro": "1.1.2",
+    "style-dictionary": "5.7.1",
     "typescript": "6.0.3",
     "typescript-eslint": "8.72.1"
   }

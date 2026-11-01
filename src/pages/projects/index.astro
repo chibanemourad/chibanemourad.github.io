@@ -1,4 +1,5 @@
 ---
+import SummaryCard from "../../components/ui/SummaryCard.astro";
 import Base from "../../layouts/Base.astro";
 import { projects } from "../../lib/content";
 const entries = await projects();
@@ -9,12 +10,13 @@ const entries = await projects();
   <h1>Projects.</h1>
   {entries.length ? (
     entries.map((p) => (
-      <article class="card">
-        <h2>
-          <a href={"/projects/" + p.id + "/"}>{p.data.title}</a>
-        </h2>
+      <SummaryCard
+        title={p.data.title}
+        href={"/projects/" + p.id + "/"}
+        headingLevel="h2"
+      >
         <p>{p.data.description}</p>
-      </article>
+      </SummaryCard>
     ))
   ) : (
     <p> Project case studies are being prepared. Check back soon.</p>

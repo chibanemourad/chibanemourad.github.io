@@ -1,0 +1,114 @@
+---
+import Base from "../../layouts/Base.astro";
+import ActionLink from "../../components/ui/ActionLink.astro";
+import Button from "../../components/ui/Button.astro";
+import Tag from "../../components/ui/Tag.astro";
+import SummaryCard from "../../components/ui/SummaryCard.astro";
+import Section from "../../components/ui/Section.astro";
+import resolved from "../../../design-system/tokens/resolved.generated.json";
+import tokens from "../../../design-system/tokens/foundations.json";
+---
+
+<Base
+  title="Design system"
+  description="The foundations, components, and patterns behind this portfolio."
+>
+  <p class="eyebrow">Design & engineering</p>
+  <h1>Design system.</h1>
+  <p class="prose">
+    A shared language for this portfolio. Versioned design tokens define the
+    foundations; these examples render the same Astro components used in the
+    site.
+  </p>
+  <Section>
+    <h2>Foundations</h2>
+    <p>
+      System typography, green accents, comfortable reading widths, and
+      accessible light and dark appearances. Use the header toggle to inspect
+      both themes.
+    </p>
+    <h3>Color roles</h3>
+    <dl class="token-grid">
+      {Object.entries(tokens.light).map(([name, token]) => (
+        <div>
+          <dt>
+            <span class="swatch" style={`background:var(--${name})`}></span>
+            <code>--{name}</code>
+          </dt>
+          <dd>
+            {token.$description}
+            <br />
+            <code>
+              {resolved[`light.${name}` as keyof typeof resolved]}
+            </code> /{" "}
+            <code>{resolved[`dark.${name}` as keyof typeof resolved]}</code>
+          </dd>
+        </div>
+      ))}
+    </dl>
+    <h3>Typography</h3>
+    <p class="eyebrow">Eyebrow · context</p>
+    <h2>Section heading</h2>
+    <h3>Component heading</h3>
+    <p>Body text uses system fonts and generous line height.</p>
+    <p class="muted">Muted text provides secondary context.</p>
+    <h3>Spacing</h3>
+    <ul>
+      {Object.keys(tokens.space).map((value) => (
+        <li>
+          <code>--space-{value}</code>: {value}px
+        </li>
+      ))}
+    </ul>
+  </Section>
+  <Section>
+    <h2>Components</h2>
+    <h3>Actions</h3>
+    <p>
+      Use links for navigation and buttons for actions. All controls retain
+      visible keyboard focus.
+    </p>
+    <ActionLink href="/projects/">Explore my work ↗</ActionLink>
+    <p>
+      <Button type="button" disabled>
+        Unavailable action
+      </Button>
+    </p>
+    <pre><code>{'<ActionLink href="/projects/">Explore my work</ActionLink>'}</code></pre>
+    <h3>Tags</h3>
+    <Tag>Astro</Tag>
+    <p>Tags describe technologies; they are not interactive controls.</p>
+    <h3>Summary cards</h3>
+    <SummaryCard
+      title="A reusable content pattern"
+      href="/projects/"
+      headingLevel="h3"
+    >
+      <p>Cards separate presentation from project and career data.</p>
+    </SummaryCard>
+    <h3>Contracts</h3>
+    <ul>
+      <li>
+        Button, ActionLink, IconButton, Tag, Section: native HTML attributes and
+        default content slot.
+      </li>
+      <li>
+        IconButton: provide an accessible label and decorative SVG content.
+      </li>
+      <li>
+        SummaryCard: required title; optional href; headingLevel h2 or h3,
+        default h3; eyebrow and default slots.
+      </li>
+      <li>Section: use an explicit heading appropriate to the page outline.</li>
+    </ul>
+  </Section>
+  <Section>
+    <h2>Patterns</h2>
+    <p>
+      The <a href="/">homepage</a> composes a hero, strengths grid, and featured
+      work. <a href="/projects/">Projects</a> demonstrates listings and case
+      studies; <a href="/about/">About</a> demonstrates career summaries and
+      reading typography.
+    </p>
+  </Section>
+</Base>

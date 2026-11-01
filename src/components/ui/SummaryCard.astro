@@ -1,0 +1,14 @@
+---
+interface Props {
+  title: string;
+  href?: string;
+  headingLevel?: "h2" | "h3";
+}
+const { title, href, headingLevel: Heading = "h3" } = Astro.props;
+---
+
+<article class="card">
+  <slot name="eyebrow" />
+  <Heading>{href ? <a href={href}>{title}</a> : title}</Heading>
+  <slot />
+</article>

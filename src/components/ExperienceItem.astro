@@ -1,4 +1,5 @@
 ---
+import SummaryCard from "./ui/SummaryCard.astro";
 import type { Experience } from "../data/profile";
 interface Props {
   experience: Experience;
@@ -6,11 +7,12 @@ interface Props {
 const { experience } = Astro.props;
 ---
 
-<article class="card">
-  <p class="eyebrow">{experience.period}</p>
-  <h3>{experience.role}</h3>
+<SummaryCard title={experience.role}>
+  <p slot="eyebrow" class="eyebrow">
+    {experience.period}
+  </p>
   <p>
     <strong>{experience.employer}</strong>
   </p>
   {experience.summary && <p>{experience.summary}</p>}
-</article>
+</SummaryCard>

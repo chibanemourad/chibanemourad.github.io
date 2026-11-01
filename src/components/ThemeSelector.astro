@@ -1,5 +1,9 @@
+---
+import IconButton from "./ui/IconButton.astro";
+---
+
 <div class="theme-control" hidden>
-  <button class="theme-trigger" type="button" aria-label="Switch to dark theme">
+  <IconButton type="button" aria-label="Switch to dark theme">
     <svg
       class="theme-moon"
       width="18"
@@ -26,7 +30,7 @@
       <circle cx="12" cy="12" r="4" />
       <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" />
     </svg>
-  </button>
+  </IconButton>
 </div>
 <script>
   type Preference = "system" | "light" | "dark";
