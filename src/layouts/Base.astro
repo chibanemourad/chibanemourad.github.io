@@ -1,17 +1,13 @@
 ---
 import "../styles/global.css";
-import ThemeSelector from "../components/ThemeSelector.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
 import { profile } from "../data/profile";
 interface Props {
   title: string;
   description?: string;
 }
 const { title, description = profile.description } = Astro.props;
-const links = [
-  ["About", "/about/"],
-  ["Projects", "/projects/"],
-  ["Writing", "/blog/"],
-];
 ---
 
 <!doctype html>
@@ -60,33 +56,10 @@ const links = [
     <a class="skip" href="#main">
       Skip to content
     </a>
-    <header>
-      <a class="brand" href="/">
-        MC<span> / Technical lead</span>
-      </a>
-      <div class="header-actions">
-        <nav aria-label="Main">
-          {links.map(([label, url]) => (
-            <a
-              href={url}
-              aria-current={
-                Astro.url.pathname.startsWith(url) ? "page" : undefined
-              }
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
-        <ThemeSelector />
-      </div>
-    </header>
+    <Header />
     <main id="main">
       <slot />
     </main>
-    <footer>
-      <span>© {new Date().getFullYear()} Mourad Chibane · Paris, France</span>
-      <a href={profile.github}>GitHub ↗</a>
-      <a href={profile.linkedin}>LinkedIn ↗</a>
-    </footer>
+    <Footer />
   </body>
 </html>

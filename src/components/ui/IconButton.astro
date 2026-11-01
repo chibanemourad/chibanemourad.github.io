@@ -1,0 +1,9 @@
+---
+import type { HTMLAttributes } from "astro/types";
+type Props = HTMLAttributes<"button"> & { "aria-label": string };
+const { class: className, type = "button", ...attributes } = Astro.props;
+---
+
+<button type={type} class:list={["theme-trigger", className]} {...attributes}>
+  <slot />
+</button>

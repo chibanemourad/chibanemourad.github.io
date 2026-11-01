@@ -1,4 +1,5 @@
 ---
+import SummaryCard from "../../components/ui/SummaryCard.astro";
 import Base from "../../layouts/Base.astro";
 import { articles } from "../../lib/content";
 const entries = await articles();
@@ -9,12 +10,13 @@ const entries = await articles();
   <h1>Writing.</h1>
   {entries.length ? (
     entries.map((p) => (
-      <article class="card">
-        <h2>
-          <a href={"/blog/" + p.id + "/"}>{p.data.title}</a>
-        </h2>
+      <SummaryCard
+        title={p.data.title}
+        href={"/blog/" + p.id + "/"}
+        headingLevel="h2"
+      >
         <p>{p.data.description}</p>
-      </article>
+      </SummaryCard>
     ))
   ) : (
     <p> Articles are being prepared. Check back soon.</p>
