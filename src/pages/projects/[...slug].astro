@@ -14,19 +14,37 @@ const { Content } = await render(entry);
 ---
 
 <Base title={entry.data.title} description={entry.data.description}>
-  <p class="eyebrow">Projects</p>
-  <h1>{entry.data.title}</h1>
-  <p>
-    {entry.data.employer} · {entry.data.role}
-  </p>
-  <ul class="technologies">
-    {entry.data.technologies.map((technology) => (
-      <li>
-        <Tag>{technology}</Tag>
-      </li>
-    ))}
-  </ul>
-  <article class="prose">
-    <Content />
-  </article>
+  <div class="article-shell">
+    <div class="article-heading">
+      <a class="article-back" href="/projects/">
+        ← Back to projects
+      </a>
+      <p class="eyebrow">Selected work · Case study</p>
+      <h1>{entry.data.title}</h1>
+      <p class="article-deck">{entry.data.description}</p>
+    </div>
+    <aside class="project-context" aria-label="Project context">
+      <dl>
+        <div>
+          <dt>Organization</dt>
+          <dd>{entry.data.employer}</dd>
+        </div>
+        <div>
+          <dt>Role</dt>
+          <dd>{entry.data.role}</dd>
+        </div>
+      </dl>
+      <p class="eyebrow">Technologies</p>
+      <ul class="technologies">
+        {entry.data.technologies.map((technology) => (
+          <li>
+            <Tag>{technology}</Tag>
+          </li>
+        ))}
+      </ul>
+    </aside>
+    <article class="prose article-body">
+      <Content />
+    </article>
+  </div>
 </Base>
