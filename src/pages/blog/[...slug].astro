@@ -9,13 +9,44 @@ export async function getStaticPaths() {
   }));
 }
 const { entry } = Astro.props;
+const readingMinutes = Math.max(
+  1,
+  Math.ceil((entry.body ?? "").split(/\s+/).length / 220),
+);
 const { Content } = await render(entry);
 ---
 
 <Base title={entry.data.title} description={entry.data.description}>
-  <p class="eyebrow">Writing</p>
-  <h1>{entry.data.title}</h1>
-  <article class="prose">
-    <Content />
-  </article>
+  <div class="article-shell">
+    <div class="article-heading">
+      <a class="article-back" href="/blog/">
+        ← Back to writing
+      </a>
+      <p class="eyebrow">
+        <time datetime={entry.data.date.toISOString()}>
+          {entry.data.date.toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            timeZone: "UTC",
+          })}
+        </time>{" "}
+        · {readingMinutes} min read
+      </p>
+      <h1>{entry.data.title}</h1>
+      <p class="article-deck">{entry.data.description}</p>
+    </div>
+    <article class="prose article-body">
+      <Content />
+    </article>
+  </div>
+  <script>
+    document.querySelectorAll(".article-body pre").forEach((panel) => {
+      panel.setAttribute("tabindex", "0");
+      panel.setAttribute(
+        "aria-label",
+        "Code example, scroll horizontally for long lines",
+      );
+    });
+  </script>
 </Base>
