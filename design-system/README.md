@@ -29,3 +29,11 @@ The repository maintainer owns token and component changes. PRs must include
 usage documentation, checks performed, and desktop/mobile screenshots in both
 themes for visual changes. Deprecate names with a documented replacement before
 removal; migrate all consumers together. Keep the current identity and content.
+
+## Homepage composition
+
+The homepage pairs a focused introduction with a conceptual engineering diagram.
+Actions stay beside the introduction. Selected work leads with one featured case
+study and two supporting panels; expertise and dated writing follow. The diagram
+is illustrative, not a representation of a proprietary system. Layouts stack on
+narrow screens. Homepage classes are scoped separately from reading layouts.
