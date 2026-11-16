@@ -1,8 +1,6 @@
 ---
 import ActionLink from "../components/ui/ActionLink.astro";
-import Section from "../components/ui/Section.astro";
 import Base from "../layouts/Base.astro";
-import ProjectSummary from "../components/ProjectSummary.astro";
 import { profile } from "../data/profile";
 import { articles, projects } from "../lib/content";
 const currentRole = profile.experience[0];
@@ -14,77 +12,167 @@ const work = (await projects()).filter((p) => p.data.featured).slice(0, 3);
   title="Software architecture & engineering excellence"
   description={profile.description}
 >
-  <section class="hero">
-    <p class="eyebrow">
-      {profile.location} · {currentRole.role}
-    </p>
-    <h1>
-      Strong foundations.
-      <br />
-      <em>Better engineering.</em>
-    </h1>
-    <div class="intro">
-      <p>
-        I’m {profile.name}, {currentRole.role} at {currentRole.employer}. I
-        design modular .NET applications, build reusable technical foundations,
-        and help teams improve software quality across complex codebases.
-      </p>
-      <ActionLink href="/projects/">Explore my work ↗</ActionLink>
-    </div>
-    <p>
-      <a href={profile.resume}>View résumé ↗</a> ·{" "}
-      <a href="/about/">About my experience</a>
-    </p>
-  </section>
-  <Section>
-    <h2>Architecture that supports teams and products</h2>
-    <div class="strengths">
-      <article>
-        <h3>Software architecture</h3>
-        <p>
-          Modular .NET applications, reusable frameworks, and documented
-          architectural decisions. Hands-on experience spans medical-device
-          software and React/Python products in climate technology.
+  <div class="home">
+    <section class="home-hero" aria-labelledby="home-title">
+      <div>
+        <p class="eyebrow">
+          {profile.name} · {profile.location}
         </p>
-      </article>
-      <article>
-        <h3>Engineering quality at scale</h3>
-        <p>
-          Shared SDK-style build tooling and automated quality checks across 50+
-          Git repositories and approximately 500 C# projects. Consistent
-          foundations for multi-repository development.
+        <h1 id="home-title">
+          Software architecture.
+          <br />
+          <em>Stronger engineering foundations.</em>
+        </h1>
+        <p class="home-role">
+          {currentRole.role} at {currentRole.employer}.
         </p>
-      </article>
-      <article>
-        <h3>Cross-team technical leadership</h3>
-        <p>
-          Engineering standards, thoughtful code review, and mentoring grounded
-          in hands-on delivery. Connecting architectural decisions with shared
-          practices and developer productivity.
+        <p class="home-introduction">
+          My experience brings together modular .NET applications, reusable
+          developer tooling, and engineering practices that help teams evolve
+          complex software.
         </p>
-      </article>
-    </div>
-  </Section>
-  <Section>
-    <div class="section-head">
-      <h2>Selected work</h2>
-      <a href="/projects/">All projects ↗</a>
-    </div>
-    {work.map((project) => (
-      <ProjectSummary project={project} />
-    ))}
-  </Section>
-  {posts.length > 0 && (
-    <Section>
-      <h2>From the notebook</h2>
-      {posts.slice(0, 3).map((p) => (
-        <article class="card">
-          <h3>
-            <a href={"/blog/" + p.id + "/"}>{p.data.title}</a>
-          </h3>
-          <p>{p.data.description}</p>
+        <div class="home-actions">
+          <ActionLink href="/projects/">
+            Explore projects <span aria-hidden="true">→</span>
+          </ActionLink>
+          <a href={profile.resume}>
+            View résumé <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+      <figure class="engineering-map">
+        <figcaption class="eyebrow">Engineering approach</figcaption>
+        <div class="map-node">
+          <span>01 / Product</span>
+          <strong>Applications built to evolve</strong>
+          <p>Clear boundaries. Focused modules.</p>
+        </div>
+        <div class="map-connector" aria-hidden="true">
+          ↓
+        </div>
+        <div class="map-node">
+          <span>02 / Foundation</span>
+          <strong>Shared technical foundations</strong>
+          <p>Reusable components and build conventions.</p>
+        </div>
+        <div class="map-connector" aria-hidden="true">
+          ↓
+        </div>
+        <div class="map-node">
+          <span>03 / Practice</span>
+          <strong>Quality in the workflow</strong>
+          <p>Automated checks. Documented decisions.</p>
+        </div>
+      </figure>
+    </section>
+    <section class="home-work" aria-labelledby="work-title">
+      <div class="home-section-heading">
+        <div>
+          <p class="eyebrow">Experience in practice</p>
+          <h2 id="work-title">Selected work</h2>
+        </div>
+        <a href="/projects/">
+          All projects <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="home-work-grid">
+        {work.map((project, index) => (
+          <article
+            class:list={[
+              "home-project",
+              { "home-project-featured": index === 0 },
+            ]}
+          >
+            <p class="eyebrow">{project.data.employer}</p>
+            <p class="home-project-number" aria-hidden="true">
+              0{index + 1}
+            </p>
+            <h3>
+              <a href={"/projects/" + project.id + "/"}>{project.data.title}</a>
+            </h3>
+            <p>{project.data.description}</p>
+            <a
+              class="home-read"
+              href={"/projects/" + project.id + "/"}
+              aria-label={"Read case study: " + project.data.title}
+            >
+              Read case study <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+    <section class="home-expertise" aria-labelledby="expertise-title">
+      <div class="home-section-heading">
+        <div>
+          <p class="eyebrow">How I contribute</p>
+          <h2 id="expertise-title">From architecture to everyday practice</h2>
+        </div>
+      </div>
+      <div class="home-expertise-grid">
+        <article>
+          <h3>Software architecture</h3>
+          <p>
+            Modular applications, explicit responsibilities, and technical
+            decisions that stay understandable as software grows.
+          </p>
         </article>
-      ))}
-    </Section>
-  )}
+        <article>
+          <h3>Engineering quality</h3>
+          <p>
+            Shared build tooling and automated checks that make consistent
+            engineering practices part of the workflow.
+          </p>
+        </article>
+        <article>
+          <h3>Technical leadership</h3>
+          <p>
+            Hands-on delivery, code review, and mentoring that connect technical
+            direction with the team's daily work.
+          </p>
+        </article>
+      </div>
+      <a class="home-read" href="/about/">
+        About my experience <span aria-hidden="true">→</span>
+      </a>
+    </section>
+    {posts.length > 0 && (
+      <section class="home-writing" aria-labelledby="writing-title">
+        <div class="home-section-heading">
+          <div>
+            <p class="eyebrow">Ideas & explanations</p>
+            <h2 id="writing-title">From the notebook</h2>
+          </div>
+          <a href="/blog/">
+            All writing <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        {posts.slice(0, 3).map((post) => (
+          <article class="home-post">
+            <time datetime={post.data.date.toISOString()}>
+              {post.data.date.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+                timeZone: "UTC",
+              })}
+            </time>
+            <div>
+              <h3>
+                <a href={"/blog/" + post.id + "/"}>{post.data.title}</a>
+              </h3>
+              <p>{post.data.description}</p>
+              <a
+                class="home-read"
+                href={"/blog/" + post.id + "/"}
+                aria-label={"Read article: " + post.data.title}
+              >
+                Read article <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </section>
+    )}
+  </div>
 </Base>

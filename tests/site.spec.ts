@@ -53,7 +53,7 @@ test("profile and featured work reflect verified career details", async ({
   await expect(
     page.getByRole("heading", { name: "From the notebook" }),
   ).toBeVisible();
-  await expect(page.locator(".section:has(> .section-head) .card h3 a")).toHaveText([
+  await expect(page.locator(".home-work h3 a")).toHaveText([
     "Bringing consistency to builds across 500 .NET projects",
     "Building a modular foundation for point-of-care software",
     "Turning carbon data into actionable insights at CO2 AI",
