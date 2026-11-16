@@ -7,6 +7,7 @@ for (const colorScheme of ["light", "dark"] as const) {
     "/design-system/",
     "/projects/",
     "/blog/",
+    "/blog/csharp-15-union-types/",
     "/404.html",
     "/projects/shared-dotnet-builds/",
     "/projects/modular-point-of-care/",
@@ -17,7 +18,7 @@ for (const colorScheme of ["light", "dark"] as const) {
     }) => {
       await page.emulateMedia({ colorScheme });
       await page.goto(path);
-      await expect(page.locator("h1")).toBeVisible();
+      await expect(page.locator("main h1")).toBeVisible();
       expect(
         (await new AxeBuilder({ page }).analyze()).violations.filter((v) =>
           ["serious", "critical"].includes(v.impact ?? ""),
@@ -51,8 +52,8 @@ test("profile and featured work reflect verified career details", async ({
   ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "From the notebook" }),
-  ).toHaveCount(0);
-  await expect(page.locator(".card h3 a")).toHaveText([
+  ).toBeVisible();
+  await expect(page.locator(".section:has(> .section-head) .card h3 a")).toHaveText([
     "Bringing consistency to builds across 500 .NET projects",
     "Building a modular foundation for point-of-care software",
     "Turning carbon data into actionable insights at CO2 AI",
@@ -183,3 +184,79 @@ test("toggle remains usable when storage is blocked", async ({ page }) => {
     page.getByRole("button", { name: "Switch to light theme" }),
   ).toBeFocused();
 });
+
+test("article full example is keyboard accessible", async ({ page }) => {
+  await page.goto("/blog/csharp-15-union-types/");
+  const disclosure = page.locator(".complete-example");
+  await expect(disclosure).not.toHaveAttribute("open", "");
+  await disclosure.locator("summary").focus();
+  await page.keyboard.press("Enter");
+  await expect(disclosure).toHaveAttribute("open", "");
+  await expect(disclosure.locator("pre")).toBeVisible();
+});
+
+test("article explains job states and shows runnable output", async ({
+  page,
+}) => {
+  await page.goto("/blog/csharp-15-union-types/");
+  const article = page.locator(".article-body");
+  await expect(article).toContainText("IsRunning = true");
+  await expect(article).toContainText("IsCompleted = true");
+  await expect(article).toContainText(
+    "public union JobState(Queued, Running, Completed, Failed)",
+  );
+  await expect(article).toContainText(
+    "non-exhaustive switch-expression warning",
+  );
+  await expect(
+    article.locator("pre").filter({
+      hasText:
+        /^Waiting to start\nRunning: 40%\nSaved to report.csv\nFailed: Connection lost/,
+    }),
+  ).toBeVisible();
+});
+
+for (const preference of ["system", "dark", "light"]) {
+  test(`article print highlighting is light with ${preference} preference`, async ({
+    page,
+  }) => {
+    await page.emulateMedia({ colorScheme: "dark" });
+    await page.addInitScript((preference) => {
+      if (preference !== "system")
+        localStorage.setItem("portfolio-theme", preference);
+    }, preference);
+    await page.goto("/blog/csharp-15-union-types/");
+    const panel = page.locator(".astro-code").first();
+    const colors = await panel.evaluate((el) => {
+      const style = getComputedStyle(el);
+      const token = el.querySelector("span[style]");
+      return {
+        background: style.getPropertyValue("--shiki-light-bg").trim(),
+        foreground: style.getPropertyValue("--shiki-light").trim(),
+        token:
+          token &&
+          getComputedStyle(token).getPropertyValue("--shiki-light").trim(),
+      };
+    });
+    await page.emulateMedia({ media: "print" });
+    expect(
+      await panel.evaluate((el, colors) => {
+        const probe = document.createElement("span");
+        document.body.append(probe);
+        const normalize = (color: string) => {
+          probe.style.color = color;
+          return getComputedStyle(probe).color;
+        };
+        const token = el.querySelector("span[style]");
+        const matches =
+          getComputedStyle(el).backgroundColor ===
+            normalize(colors.background) &&
+          getComputedStyle(el).color === normalize(colors.foreground) &&
+          !!token &&
+          getComputedStyle(token).color === normalize(colors.token ?? "");
+        probe.remove();
+        return matches;
+      }, colors),
+    ).toBe(true);
+  });
+}
