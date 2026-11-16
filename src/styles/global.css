@@ -719,6 +719,205 @@
   }
 }
 
+@layer components {
+  .about-hero {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 56px;
+    align-items: center;
+    padding-bottom: 56px;
+  }
+  .about-page h1 {
+    font-size: clamp(38px, 4.7vw, 58px);
+    letter-spacing: -1.8px;
+    line-height: 1.15;
+    margin: 24px 0;
+  }
+  .about-lead {
+    font-size: 20px;
+    color: var(--muted);
+    max-width: 560px;
+  }
+  .about-current {
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--accent) 6%, var(--background));
+  }
+  .about-current h2 {
+    font-size: 26px;
+    line-height: 1.3;
+  }
+  .about-current > p:last-child {
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .about-story {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 48px;
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
+  }
+  .about-page h2 {
+    letter-spacing: -0.6px;
+  }
+  .about-story h2 {
+    font-size: 32px;
+    line-height: 1.3;
+    margin-top: 16px;
+  }
+  .about-story-copy p {
+    margin-top: 0;
+    font-size: 17px;
+    color: var(--muted);
+  }
+  .about-section {
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
+    scroll-margin-top: 24px;
+  }
+  .about-section .home-section-heading > p {
+    font-size: 14px;
+    max-width: 300px;
+  }
+  .career-entry {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 32px;
+    padding: 28px 0;
+  }
+  .career-period {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+    padding-top: 4px;
+    line-height: 1.7;
+  }
+  .career-description {
+    position: relative;
+    padding-left: 28px;
+    border-left: 1px solid var(--border);
+  }
+  .career-description::before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .career-description .eyebrow {
+    margin: 0 0 12px;
+  }
+  .career-description h3 {
+    font-size: 21px;
+    line-height: 1.4;
+    margin: 0 0 16px;
+  }
+  .career-description > p:last-child:not(.eyebrow) {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 0;
+    max-width: 720px;
+  }
+  .about-skills {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .about-skills article {
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .about-skills h3 {
+    font-size: 19px;
+    line-height: 1.4;
+    margin: 0 0 16px;
+  }
+  .about-skills p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+  }
+  .about-background {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 56px;
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
+  }
+  .about-background p:not(.eyebrow),
+  .about-background li {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .about-background ul {
+    padding-left: 20px;
+  }
+  .about-background li + li {
+    margin-top: 12px;
+  }
+  .about-connect {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    align-items: center;
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--accent) 5%, var(--background));
+  }
+  .about-connect h2 {
+    font-size: 30px;
+    margin: 12px 0;
+  }
+  .about-connect p:not(.eyebrow) {
+    color: var(--muted);
+    font-size: 16px;
+  }
+  @media (max-width: 800px) {
+    .about-hero,
+    .about-story,
+    .about-background {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .about-current {
+      max-width: 560px;
+    }
+    .career-entry {
+      grid-template-columns: 160px minmax(0, 1fr);
+      gap: 20px;
+    }
+  }
+  @media (max-width: 600px) {
+    .career-entry,
+    .about-skills {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .career-description {
+      padding-left: 20px;
+    }
+    .about-connect {
+      flex-direction: column;
+      align-items: start;
+      padding: 24px;
+    }
+    .about-connect .home-actions {
+      margin: 0;
+    }
+    .about-current {
+      padding: 24px;
+    }
+  }
+}
+
 @layer utilities {
   @media print {
     :root .article-body .astro-code,
